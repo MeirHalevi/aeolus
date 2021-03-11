@@ -1,6 +1,10 @@
 import { BlockRule } from './block-rule'
 import { ApproveRule } from './approve-rule'
 
+/**
+ * Rules Container
+ * Includes the lists of the approved & blocked rules.
+ */
 export class RulesContainer {
     private blocksRules: Array<BlockRule>;
     private approveRules: Array<ApproveRule>;

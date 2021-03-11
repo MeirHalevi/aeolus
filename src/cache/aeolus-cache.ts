@@ -25,7 +25,7 @@ export class AeolusCache {
             var keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             return this.storeCache.increment(keyExpire.key, 1, keyExpire.expire);
         } else {
-            throw new MissingStoreCahceError("UnInitialize store cache");
+            throw new MissingStoreCahceError("Uninitialize store cache");
         }
     }
 
@@ -33,7 +33,7 @@ export class AeolusCache {
         if(this.storeCache){
             return this.storeCache.read(key);
         } else {
-            throw new MissingStoreCahceError("UnInitialize store cache");
+            throw new MissingStoreCahceError("Uninitialize store cache");
         }
     }
 
@@ -41,7 +41,7 @@ export class AeolusCache {
         if(this.storeCache) {
             this.storeCache.write(key, value, expiresIn);
         } else {
-            throw new MissingStoreCahceError("UnInitialize store cache");
+            throw new MissingStoreCahceError("Uninitialize store cache");
         }
     }
 
@@ -50,7 +50,7 @@ export class AeolusCache {
             var keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             this.storeCache.delete(keyExpire.key);
         } else {
-            throw new MissingStoreCahceError("UnInitialize store cache")
+            throw new MissingStoreCahceError("Uninitialize store cache")
         }
     }
 
@@ -65,7 +65,7 @@ export class AeolusCache {
         if(this.storeCache) {
             this.storeCache.delete(key);
         } else {
-            throw new MissingStoreCahceError("UnInitialize store cache");
+            throw new MissingStoreCahceError("Uninitialize store cache");
         }
     }
 }

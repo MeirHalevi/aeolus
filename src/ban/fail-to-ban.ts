@@ -22,6 +22,7 @@ export class FailToBan {
         return false;
     }
 
+    
     public reset(discriminator: string, findTime: number) {
         this.aeolusCache.resetCount(`${this.keyPrefix()}:count:${discriminator}`, findTime);
         this.aeolusCache.delete(`${this.keyPrefix()}:ban:${discriminator}}`);
