@@ -11,9 +11,9 @@ export class AllowToBan extends FailToBan {
         return ALLOW_TO_BAN;
     }
 
-    fail(discriminitor: string, banTime: number, findTime: number, maxRetry: number): boolean {
+    fail(discriminitor: string, banTime: number, findTime: number, maxRetry: number) : boolean {
         var count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminitor}`, findTime);
-        if (count >= maxRetry){
+        if(count >= maxRetry) {
             this.ban(discriminitor, banTime);
         }
         return false;
