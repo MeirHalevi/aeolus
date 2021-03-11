@@ -1,0 +1,17 @@
+{
+  "name": "aeolus",
+  "version": "1.0.0",
+  "description": "Request rules manager in order ro block/allow request. Can be in use in interceptors/ middlewares",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "eslint": "^7.21.0",
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Fiverr",
+  "license": "UNLICENSED"
+}
