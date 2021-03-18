@@ -14,11 +14,11 @@ export class RulesContainer {
         this.approveRules = new Array<ApproveRule>();
     }
 
-    addBlockRule(callback: Function, name: string){
+    addBlockRule(callback: (req: any) => boolean, name: string){
         this.blocksRules.push(new BlockRule(callback, name));
     }
 
-    addApproveRule(callback: Function, name: string){
+    addApproveRule(callback: (req: any) => boolean, name: string){
         this.approveRules.push(new ApproveRule(callback, name));
     }
 

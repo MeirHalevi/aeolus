@@ -71,11 +71,8 @@ export class AeolusCache {
 }
 
 class KeyExpire {
-    key: string;
-    expire: number;
-
-    constructor(key: string, expire: number) {
-        this.key = key;
-        this.expire = expire;
-    }
+    constructor(
+        public key: string,
+        public expire: number) 
+        {}
 }

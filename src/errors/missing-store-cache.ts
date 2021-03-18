@@ -1,6 +1,6 @@
 export class MissingStoreCahceError extends Error {
-    constructor(m: string) {
-        super(m);
+    constructor(message: string) {
+        super(message);
 
         Object.setPrototypeOf(this, MissingStoreCahceError.prototype);
     }

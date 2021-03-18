@@ -1,25 +1,17 @@
-const BLOCK_RULE = 'block';
-const APPROVE_RULE = 'approve';
-
 /** 
  * Rule class
  * Each rule have a name and a callback method that check 
  * if the rule match/dismatch
  **/
 export class Rule {
-    func: Function;
+    func: (req: any) => boolean;
     protected type: string;
     protected name: string;
 
-    static get BLOCK_RULE() {
-        return BLOCK_RULE;
-    }
+    public static readonly BLOCK_RULE = 'block';
+    public static readonly APPROVE_RULE = 'approve';
 
-    static get APPROVE_RULE() {
-        return APPROVE_RULE;
-    }
-
-    constructor(func: Function, name: string) {
+    constructor(func: (req: any) => boolean, name: string) {
         this.func = func;
         this.type = '';
         this.name = name;
