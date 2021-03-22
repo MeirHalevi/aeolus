@@ -9,23 +9,22 @@ export class FailToBan {
         this.aeolusCache = AeolusCache.getInstance();
     }
 
-    public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: ()=> boolean) : Promise<boolean> {
+    public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: () => boolean) : Promise<boolean> {
         if(this.isBanned(discriminator)) {
             return true;
         }
-        else if (callback()) {
+        else if(callback()) {
             return this.fail(discriminator, banTime, findTime, maxRetry);
         }
         return false;
     }
 
-    
     public async reset(discriminator: string, findTime: number) : Promise<void> {
         this.aeolusCache.resetCount(`${this.keyPrefix()}:count:${discriminator}`, findTime);
         this.aeolusCache.delete(`${this.keyPrefix()}:ban:${discriminator}}`);
     }
 
-    protected fail(discriminator: string, banTime: number, findTime: number, maxRetry: number): boolean {
+    protected fail(discriminator: string, banTime: number, findTime: number, maxRetry: number) : boolean {
         const count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminator}`, findTime);
         if(count >= maxRetry) {
             this.ban(discriminator, banTime);
@@ -41,7 +40,7 @@ export class FailToBan {
         this.aeolusCache.write(`${this.keyPrefix()}:ban:${discriminator}`, 1, banTime);
     }
 
-    private isBanned(discriminator: string): boolean {
+    private isBanned(discriminator: string) : boolean {
         return this.aeolusCache.read(`${this.keyPrefix()}:ban:${discriminator}`) != null;
     }
 }
