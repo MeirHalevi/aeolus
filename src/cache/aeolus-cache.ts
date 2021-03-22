@@ -15,14 +15,14 @@ export class AeolusCache {
         return AeolusCache.instance;
     }
 
-    static setStoreCache(cache: StoreCache) {
-        let instance = this.getInstance();
+    static setStoreCache(cache: StoreCache) : void {
+        const instance = this.getInstance();
         instance.storeCache = cache;
     }
 
     count(key: string, period: number) : number {
         if(this.storeCache){
-            var keyExpire : KeyExpire = this.keyAndExpiry(key, period);
+            const keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             return this.storeCache.increment(keyExpire.key, 1, keyExpire.expire);
         } else {
             throw new MissingStoreCahceError("Uninitialize store cache");
@@ -37,7 +37,7 @@ export class AeolusCache {
         }
     }
 
-    write(key: string, value: number, expiresIn: number) {
+    write(key: string, value: number, expiresIn: number) : void {
         if(this.storeCache) {
             this.storeCache.write(key, value, expiresIn);
         } else {
@@ -45,9 +45,9 @@ export class AeolusCache {
         }
     }
 
-    resetCount(key: string, period: number) {
+    resetCount(key: string, period: number) : void {
         if(this.storeCache) {
-            var keyExpire : KeyExpire = this.keyAndExpiry(key, period);
+            const keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             this.storeCache.delete(keyExpire.key);
         } else {
             throw new MissingStoreCahceError("Uninitialize store cache")
@@ -55,13 +55,13 @@ export class AeolusCache {
     }
 
     private keyAndExpiry(unprefixedKey: string, period: number): KeyExpire {
-        var lastEpochTime : number = new Date().getTime();
-        var expireIn : number = (period - (lastEpochTime % period) + 1);
-        var key : string = `${Math.floor(lastEpochTime / period)}:${unprefixedKey}`;
+        const lastEpochTime : number = new Date().getTime();
+        const expireIn : number = (period - (lastEpochTime % period) + 1);
+        const key = `${Math.floor(lastEpochTime / period)}:${unprefixedKey}`;
         return new KeyExpire(key, expireIn);
     }
 
-    delete(key: string) {
+    delete(key: string) : void {
         if(this.storeCache) {
             this.storeCache.delete(key);
         } else {

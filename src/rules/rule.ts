@@ -3,15 +3,15 @@
  * Each rule have a name and a callback method that check 
  * if the rule match/dismatch
  **/
-export class Rule {
-    func: (req: any) => boolean;
+export class Rule<T> {
+    func: (req: T) => boolean;
     protected type: string;
     protected name: string;
 
     public static readonly BLOCK_RULE = 'block';
     public static readonly APPROVE_RULE = 'approve';
 
-    constructor(func: (req: any) => boolean, name: string) {
+    constructor(func: (req: T) => boolean, name: string) {
         this.func = func;
         this.type = '';
         this.name = name;
@@ -23,11 +23,10 @@ export class Rule {
      * @param request the request the interceptor/middleware get
      * @returns boolean flag if it match to the rule defined in the callback
      */
-    check(request: Request) : boolean {
-        let match = this.func(request);
+    check(request: T) : boolean {
+        const match = this.func(request);
         if (match) {
-            request.headers.append("aleous.matched", this.name);
-            request.headers.append("aleous.matched.type", this.type);
+            //TO DO - Add data to the headers of the request
         }
         return match;
     }

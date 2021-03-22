@@ -1,47 +1,44 @@
 import { AeolusCache } from '../cache/index'
-const FAIL_TO_BAN = 'fail2ban';
 
 export class FailToBan {
     protected aeolusCache: AeolusCache;
 
-    static get FAIL_TO_BAN() {
-        return FAIL_TO_BAN;
-    }
+    public static readonly FAIL_TO_BAN = 'fail2ban';
 
     constructor() {
         this.aeolusCache = AeolusCache.getInstance();
     }
 
-    public filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: Function) : boolean {
+    public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: ()=> boolean) : Promise<boolean> {
         if(this.isBanned(discriminator)) {
             return true;
         }
-        else if (callback()){
+        else if (callback()) {
             return this.fail(discriminator, banTime, findTime, maxRetry);
         }
         return false;
     }
 
     
-    public reset(discriminator: string, findTime: number) {
+    public async reset(discriminator: string, findTime: number) : Promise<void> {
         this.aeolusCache.resetCount(`${this.keyPrefix()}:count:${discriminator}`, findTime);
         this.aeolusCache.delete(`${this.keyPrefix()}:ban:${discriminator}}`);
     }
 
     protected fail(discriminator: string, banTime: number, findTime: number, maxRetry: number): boolean {
-        var count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminator}`, findTime);
-        if(count >= maxRetry){
+        const count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminator}`, findTime);
+        if(count >= maxRetry) {
             this.ban(discriminator, banTime);
         }
         return true;
     }
 
     protected keyPrefix() : string {
-        return FAIL_TO_BAN;
+        return FailToBan.FAIL_TO_BAN;
     }
 
-    protected ban(discriminator: string, banTime: number) {
-        this.aeolusCache.write("${KEY_PREFIX}:ban:${discriminator}", 1, banTime);
+    protected ban(discriminator: string, banTime: number) : void {
+        this.aeolusCache.write(`${this.keyPrefix()}:ban:${discriminator}`, 1, banTime);
     }
 
     private isBanned(discriminator: string): boolean {
