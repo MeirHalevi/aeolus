@@ -1,4 +1,3 @@
-
 import { expect } from 'chai';
 import { Operation, RulesContainer, OperationResult } from '../../index'
 const sinon = require("sinon");

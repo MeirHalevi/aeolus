@@ -1,5 +1,3 @@
-
-import { expect } from 'chai';
 import { assert } from 'chai';
 import { FailToBan } from '../../index'
 const sinon = require("sinon");

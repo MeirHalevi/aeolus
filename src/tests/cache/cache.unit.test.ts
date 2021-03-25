@@ -1,4 +1,3 @@
-
 import { assert } from 'chai';
 import { AeolusCache } from '../../index'
 const sinon = require("sinon");
