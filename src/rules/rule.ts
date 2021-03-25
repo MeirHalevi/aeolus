@@ -1,6 +1,6 @@
-/** 
+/**
  * Rule class
- * Each rule have a name and a callback method that check 
+ * Each rule have a name and a callback method that check
  * if the rule match/dismatch
  **/
 export class Rule<T> {
@@ -26,7 +26,7 @@ export class Rule<T> {
     check(request: T) : boolean {
         const match = this.func(request);
         if (match) {
-            //TO DO - Add data to the headers of the request
+            // TO DO - Add data to the headers of the request
         }
         return match;
     }

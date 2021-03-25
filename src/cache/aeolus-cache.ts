@@ -11,7 +11,7 @@ export class AeolusCache {
         if (!AeolusCache.instance) {
             AeolusCache.instance = new AeolusCache();
         }
-    
+
         return AeolusCache.instance;
     }
 
@@ -21,19 +21,19 @@ export class AeolusCache {
     }
 
     count(key: string, period: number) : number {
-        if (this.storeCache){
+        if (this.storeCache) {
             const keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             return this.storeCache.increment(keyExpire.key, 1, keyExpire.expire);
         } else {
-            throw new MissingStoreCahceError("Uninitialize store cache");
+            throw new MissingStoreCahceError('Uninitialize store cache');
         }
     }
 
     read(key: string) : number {
-        if (this.storeCache){
+        if (this.storeCache) {
             return this.storeCache.read(key);
         } else {
-            throw new MissingStoreCahceError("Uninitialize store cache");
+            throw new MissingStoreCahceError('Uninitialize store cache');
         }
     }
 
@@ -41,7 +41,7 @@ export class AeolusCache {
         if (this.storeCache) {
             this.storeCache.write(key, value, expiresIn);
         } else {
-            throw new MissingStoreCahceError("Uninitialize store cache");
+            throw new MissingStoreCahceError('Uninitialize store cache');
         }
     }
 
@@ -50,7 +50,7 @@ export class AeolusCache {
             const keyExpire : KeyExpire = this.keyAndExpiry(key, period);
             this.storeCache.delete(keyExpire.key);
         } else {
-            throw new MissingStoreCahceError("Uninitialize store cache");
+            throw new MissingStoreCahceError('Uninitialize store cache');
         }
     }
 
@@ -65,7 +65,7 @@ export class AeolusCache {
         if (this.storeCache) {
             this.storeCache.delete(key);
         } else {
-            throw new MissingStoreCahceError("Uninitialize store cache");
+            throw new MissingStoreCahceError('Uninitialize store cache');
         }
     }
 }
@@ -73,6 +73,5 @@ export class AeolusCache {
 class KeyExpire {
     constructor(
         public key: string,
-        public expire: number) 
-        {}
+        public expire: number) {}
 }

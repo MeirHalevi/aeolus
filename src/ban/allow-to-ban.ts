@@ -1,7 +1,6 @@
 import { FailToBan } from './fail-to-ban';
 
 export class AllowToBan extends FailToBan {
-
     public static readonly ALLOW_TO_BAN = 'allow2ban';
 
     protected keyPrefix() : string {

@@ -3,7 +3,7 @@ import { OperationResult } from '../enums/index';
 
 /**
  * Operation class.
- * Apply the run method, to check if the rules that were defined 
+ * Apply the run method, to check if the rules that were defined
  * in the rulesContainer are match to the request
  */
 export class Operation<T> {
@@ -14,7 +14,7 @@ export class Operation<T> {
     }
 
     /**
-     * 
+     *
      * @param request the request the interceptor/middleware get
      * @returns an indication to know if the request is approved or blocked
      */
