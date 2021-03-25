@@ -1,5 +1,5 @@
-import { RulesContainer } from '../rules/index'
-import { OperationResult } from '../enums/index'
+import { RulesContainer } from '../rules/index';
+import { OperationResult } from '../enums/index';
 
 /**
  * Operation class.
@@ -19,9 +19,9 @@ export class Operation<T> {
      * @returns an indication to know if the request is approved or blocked
      */
     run(request: T) : OperationResult {
-        if(this.rulesContainer.isApproved(request)) {
+        if (this.rulesContainer.isApproved(request)) {
             return OperationResult.Allowed;
-        } else if(this.rulesContainer.isBlocked(request)) {
+        } else if (this.rulesContainer.isBlocked(request)) {
             return OperationResult.Blocked;
         }
         return OperationResult.Regular;

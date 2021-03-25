@@ -1,4 +1,4 @@
-import { FailToBan } from './fail-to-ban'
+import { FailToBan } from './fail-to-ban';
 
 export class AllowToBan extends FailToBan {
 
@@ -10,7 +10,7 @@ export class AllowToBan extends FailToBan {
 
     protected fail(discriminitor: string, banTime: number, findTime: number, maxRetry: number) : boolean {
         const count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminitor}`, findTime);
-        if(count >= maxRetry) {
+        if (count >= maxRetry) {
             this.ban(discriminitor, banTime);
         }
         return false;

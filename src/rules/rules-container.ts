@@ -1,5 +1,5 @@
-import { BlockRule } from './block-rule'
-import { ApproveRule } from './approve-rule'
+import { BlockRule } from './block-rule';
+import { ApproveRule } from './approve-rule';
 
 /**
  * Rules Container

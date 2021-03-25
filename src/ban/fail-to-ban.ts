@@ -1,4 +1,4 @@
-import { AeolusCache } from '../cache/index'
+import { AeolusCache } from '../cache/index';
 
 export class FailToBan {
     protected aeolusCache: AeolusCache;
@@ -10,10 +10,10 @@ export class FailToBan {
     }
 
     public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: () => boolean) : Promise<boolean> {
-        if(this.isBanned(discriminator)) {
+        if (this.isBanned(discriminator)) {
             return true;
         }
-        else if(callback()) {
+        else if (callback()) {
             return this.fail(discriminator, banTime, findTime, maxRetry);
         }
         return false;
@@ -26,7 +26,7 @@ export class FailToBan {
 
     protected fail(discriminator: string, banTime: number, findTime: number, maxRetry: number) : boolean {
         const count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminator}`, findTime);
-        if(count >= maxRetry) {
+        if (count >= maxRetry) {
             this.ban(discriminator, banTime);
         }
         return true;

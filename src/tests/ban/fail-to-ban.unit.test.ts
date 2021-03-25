@@ -1,11 +1,11 @@
 import { assert } from 'chai';
-import { FailToBan } from '../../index'
-const sinon = require("sinon");
+import { FailToBan } from '../../index';
+const sinon = require('sinon');
 
 describe('FailToBan tests', () => {
-  describe('Without a cache defined in it',() => {
+  describe('Without a cache defined in it', () => {
 
-    let failToBan = new FailToBan()
+    const failToBan = new FailToBan();
 
     describe('filter method', () => {
       it('should reject filter method', () => {

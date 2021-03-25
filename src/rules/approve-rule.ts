@@ -1,4 +1,4 @@
-import { Rule } from './rule'
+import { Rule } from './rule';
 
 export class ApproveRule<T> extends Rule<T> {
     constructor(func: (req: T) => boolean, name: string) {
