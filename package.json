@@ -1,5 +1,5 @@
 {
-  "name": "aeolus",
+  "name": "aeolus.js",
   "version": "1.0.0",
   "description": "Request rules manager in order to block/allow request. Can be in use in interceptors/ middlewares",
   "main": "index.js",
@@ -27,6 +27,6 @@
     "test": "mocha -r ts-node/register src/tests/**/**.ts",
     "lint": "eslint . --ext .ts"
   },
-  "author": "Fiverr",
-  "license": "UNLICENSED"
+  "author": "Fiverr dev team",
+  "license": "MIT"
 }
