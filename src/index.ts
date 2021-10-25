@@ -1,4 +1,4 @@
-export { Operation } from './operations/index';
+export { Operation } from './operations/operation';
 export { StoreCache } from './interfaces/store-cache';
 export { RulesContainer } from './rules/rules-container';
 export { OperationResult } from './enums';
