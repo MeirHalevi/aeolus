@@ -1,10 +1,10 @@
-import { RulesContainer } from '../rules/index';
-import { OperationResult } from '../enums/index';
+import { RulesContainer } from '../rules';
+import { OperationResult } from '../enums';
 
 /**
  * Operation class.
  * Apply the run method, to check if the rules that were defined
- * in the rulesContainer are match to the request
+ * in the rulesContainer allows or blocks the request
  */
 export class Operation<T> {
     rulesContainer: RulesContainer<T>;
@@ -16,14 +16,14 @@ export class Operation<T> {
     /**
      *
      * @param request the request the interceptor/middleware get
-     * @returns an indication to know if the request is approved or blocked
+     * @returns an indication to know if the request is allowed or blocked
      */
-    run(request: T) : OperationResult {
-        if (this.rulesContainer.isApproved(request)) {
-            return OperationResult.Allowed;
-        } else if (this.rulesContainer.isBlocked(request)) {
-            return OperationResult.Blocked;
+    async run(request: T) : Promise<OperationResult> {
+        if (await this.rulesContainer.isAllowed(request)) {
+            return OperationResult.ALLOWED;
+        } else if (await this.rulesContainer.isBlocked(request)) {
+            return OperationResult.BLOCKED;
         }
-        return OperationResult.Regular;
+        return OperationResult.REGULAR;
     }
 }

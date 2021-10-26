@@ -27,7 +27,7 @@
         "linebreak-style": [ 1, "unix" ],
         "lines-around-comment": [ 1, { "beforeBlockComment": true } ],
         "max-depth": [ 1, 8 ],
-        "max-len": [ 1, 132 ],
+        "max-len": [ 1, 150 ],
         "max-nested-callbacks": [ 1, 8 ],
         "max-params": [ 1, 8 ],
         "new-cap": 1,
@@ -57,8 +57,8 @@
         "quotes": [ 1, "single" ],
         "require-jsdoc": [ 1, {
             "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true,
+                "FunctionDeclaration": false,
+                "MethodDefinition": false,
                 "ClassDeclaration": false
             }
         }],
