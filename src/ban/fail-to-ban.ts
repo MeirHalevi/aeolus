@@ -1,4 +1,4 @@
-import { AeolusCache } from '../cache/index';
+import { AeolusCache } from '../cache';
 
 export class FailToBan {
     protected aeolusCache: AeolusCache;
@@ -9,8 +9,8 @@ export class FailToBan {
         this.aeolusCache = AeolusCache.getInstance();
     }
 
-    public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: () => boolean) : Promise<boolean> {
-        if (this.isBanned(discriminator)) {
+    public async filter(discriminator: string, banTime: number, findTime: number, maxRetry: number, callback: () => boolean): Promise<boolean> {
+        if (await this.isBanned(discriminator)) {
             return true;
         } else if (callback()) {
             return this.fail(discriminator, banTime, findTime, maxRetry);
@@ -18,28 +18,36 @@ export class FailToBan {
         return false;
     }
 
-    public async reset(discriminator: string, findTime: number) : Promise<void> {
-        this.aeolusCache.resetCount(`${this.keyPrefix()}:count:${discriminator}`, findTime);
-        this.aeolusCache.delete(`${this.keyPrefix()}:ban:${discriminator}}`);
+    public async reset(discriminator: string, findTime: number): Promise<void> {
+        this.aeolusCache.resetCount(this.keyPrefixCount(discriminator), findTime);
+        this.aeolusCache.delete(this.keyPrefixBan(discriminator));
     }
 
-    protected fail(discriminator: string, banTime: number, findTime: number, maxRetry: number) : boolean {
-        const count: number = this.aeolusCache.count(`${this.keyPrefix()}:count:${discriminator}`, findTime);
+    protected async fail(discriminator: string, banTime: number, findTime: number, maxRetry: number): Promise<boolean> {
+        const count: number = this.aeolusCache.count(this.keyPrefixCount(discriminator), findTime);
         if (count >= maxRetry) {
             this.ban(discriminator, banTime);
         }
         return true;
     }
 
-    protected keyPrefix() : string {
+    protected keyPrefix(): string {
         return FailToBan.FAIL_TO_BAN;
     }
 
-    protected ban(discriminator: string, banTime: number) : void {
-        this.aeolusCache.write(`${this.keyPrefix()}:ban:${discriminator}`, 1, banTime);
+    protected async ban(discriminator: string, banTime: number): Promise<void> {
+        this.aeolusCache.write(this.keyPrefixBan(discriminator), '1', banTime);
     }
 
-    private isBanned(discriminator: string) : boolean {
-        return this.aeolusCache.read(`${this.keyPrefix()}:ban:${discriminator}`) != null;
+    private async isBanned(discriminator: string): Promise<boolean> {
+        return await this.aeolusCache.read(this.keyPrefixBan(discriminator)) !== null;
+    }
+
+    protected keyPrefixCount(discriminator: string): string {
+        return `${this.keyPrefix()}:count:${discriminator}`;
+    }
+
+    private keyPrefixBan(discriminator: string): string {
+        return `${this.keyPrefix()}:ban:${discriminator}`;
     }
 }

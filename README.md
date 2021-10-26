@@ -17,9 +17,9 @@ where
 
 
 ### `RulesContainer<T>`
-#### `addApproveRule(callback: (req: T) => Promise<boolean>, name: string): void`
-Receives a function reference and adds it to the operation execution approved rules plan.
-If the result is true, the request will be mark as approved
+#### `addAllowRules(callback: (req: T) => Promise<boolean>, name: string): void`
+Receives a function reference and adds it to the operation execution allowed rules plan.
+If the result is true, the request will be mark as allowed
 
 #### `addBlockRule(callback: (req: T) => Promise<boolean>, name: string): void`
 Receives a function reference and adds it to the operation execution blocked rules plan.
@@ -28,7 +28,7 @@ If the result is true, the request will be mark as blocked.
 
 #### `run`
 Run on all the rules that defined in this order:
-1) approved rules  
+1) allowed rules  
 1) blocked rules  
 2) throttled rules  
 
@@ -82,7 +82,7 @@ export class ExampleRulesContainer extends RulesContainer<AeulosApiRequest> {
 
     constructor() {
         super();
-        this.addApproveRule(this.allowedUa, 'allowedUa');
+        this.addAllowRules(this.allowedUa, 'allowedUa');
         this.addBlockRule(this.isBadUa, 'badUA');
     }
 

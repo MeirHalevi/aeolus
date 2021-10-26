@@ -1,6 +1,6 @@
 export enum OperationResult {
-    Allowed = 1,
-    Blocked = 2,
-    Throttled = 3,
-    Regular = 4
+    ALLOWED = 1,
+    BLOCKED = 2,
+    THROTTLED = 3,
+    REGULAR = 4
 }

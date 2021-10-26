@@ -1,5 +1,10 @@
-import { assert } from 'chai';
+import * as chai from 'chai';
 import { AeolusCache } from '../../index';
+import chaiAsPromised from 'chai-as-promised';
+chai.use(chaiAsPromised);
+
+const assert = chai.assert;
+const expect = chai.expect;
 
 describe('AeolusCache tests', () => {
     describe('Without a cache defined in it', () => {
@@ -11,17 +16,13 @@ describe('AeolusCache tests', () => {
             });
         });
         describe('write method', () => {
-            it('should throw error on count method', () => {
-                assert.throw(function() {
-                    AeolusCache.getInstance().write('test', 1, 120);
-                }, Error, /Uninitialize store cache/);
+            it('should throw error on write method', async () => {
+                await expect(AeolusCache.getInstance().write('test', '1', 120)).to.be.rejectedWith(Error, /Uninitialize store cache/);
             });
         });
-        describe('write method', () => {
-            it('should throw error on count method', () => {
-                assert.throw(function() {
-                    AeolusCache.getInstance().read('test');
-                }, Error, /Uninitialize store cache/);
+        describe('read method', () => {
+            it('should throw error on read method', async () => {
+                await expect(AeolusCache.getInstance().read('test')).to.be.rejectedWith(Error, /Uninitialize store cache/);
             });
         });
     });

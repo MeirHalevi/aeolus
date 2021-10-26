@@ -1,7 +1,6 @@
-export { Operation } from './operations/operation';
-export { StoreCache } from './interfaces/store-cache';
-export { RulesContainer } from './rules/rules-container';
+export { Operation } from './operations';
+export { StoreCache } from './interfaces';
+export { RulesContainer } from './rules';
 export { OperationResult } from './enums';
-export { AeolusCache } from './cache/aeolus-cache';
-export { FailToBan } from './ban';
-export { AllowToBan } from './ban';
+export { AeolusCache } from './cache';
+export { FailToBan, AllowToBan } from './ban';
