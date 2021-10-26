@@ -40,6 +40,7 @@ Should return a `OperationResult` in order to understand the request status.
 If no rules have been defined, the `OperationResult` status will be `REGULAR`.
 
 ---
+
 ## Examples
 Using NestJS as a framework for the examples but could be used with any other framework that allows to create interceptors/middlewares.
 ### Definition
