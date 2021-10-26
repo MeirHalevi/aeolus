@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { AllowToBan } from '../../index';
 import * as sinon from 'sinon';
 
@@ -7,21 +7,15 @@ describe('AllowToBan tests', () => {
         const allowToBan = new AllowToBan();
 
         describe('filter method', () => {
-            xit('should reject filter method', () => {
+            it('should reject filter method', async () => {
                 const callbackRule: () => boolean = sinon.fake.returns(true);
-                return allowToBan.filter('test', 120, 120, 5, callbackRule).then(
-                    () => Promise.reject(new Error('Expected method to reject.')),
-                    err => assert.instanceOf(err, Error)
-                );
+                await expect(allowToBan.filter('test', 120, 120, 5, callbackRule)).to.be.rejectedWith(Error);
             });
         });
 
         describe('reset method', () => {
-            xit('should reject reset method', () => {
-                return allowToBan.reset('test', 120).then(
-                    () => Promise.reject(new Error('Expected method to reject.')),
-                    err => assert.instanceOf(err, Error)
-                );
+            it('should reject reset method', async () => {
+                await expect(allowToBan.reset('test', 120)).to.be.rejectedWith(Error);
             });
         });
     });
