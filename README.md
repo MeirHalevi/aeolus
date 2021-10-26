@@ -26,15 +26,20 @@ Receives a function reference and adds it to the operation execution blocked rul
 If the result is true, the request will be mark as blocked.
 
 
-### `run`
+#### `run`
 Run on all the rules that defined in this order:
-1)approved rules  
-2)blocked rules  
-3)throttled rules  
+1) approved rules  
+1) blocked rules  
+2) throttled rules  
 
-Should return a `OperationResult`, to understand the request status.  
+Should return a `OperationResult` in order to understand the request status.
 
-If no rules have been defined, the `OperationResult` status will be `REGULAR`
+---
+**NOTE**
+
+If no rules have been defined, the `OperationResult` status will be `REGULAR`.
+
+---
 ## Examples
 Using NestJS as a framework for the examples but could be used with any other framework that allows to create interceptors/middlewares.
 ### Definition
@@ -42,7 +47,9 @@ Using NestJS as a framework for the examples but could be used with any other fr
 interface AeulosApiRequest extends Request {
     userAgent: string;
 }
+```
 
+```typescript
 @Injectable()
 export class AeulosRedis implements StoreCache {
 
@@ -62,7 +69,9 @@ export class AeulosRedis implements StoreCache {
         // implement logic to delete the key
     }
 }
+```
 
+```typescript
 @Injectable()
 export class ExampleRulesContainer extends RulesContainer<AeulosApiRequest> {
 
