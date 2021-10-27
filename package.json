@@ -31,5 +31,19 @@
     "lint": "eslint . --ext .ts"
   },
   "author": "Fiverr dev team",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeirHalevi/aeolus.git"
+  },
+  "keywords": [
+    "rack-attack",
+    "typescript",
+    "security",
+    "block requests"
+  ],
+  "bugs": {
+    "url": "https://github.com/MeirHalevi/aeolus/issues"
+  },
+  "homepage": "https://github.com/MeirHalevi/aeolus#readme"
 }
