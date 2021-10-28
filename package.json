@@ -2,7 +2,7 @@
   "name": "aeolus.js",
   "version": "1.0.2-0",
   "description": "Request rules manager in order to block/allow request. Can be in use in interceptors/ middlewares",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "@types/express": "^4.17.11",
