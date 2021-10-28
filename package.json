@@ -1,6 +1,6 @@
 {
   "name": "aeolus.js",
-  "version": "1.0.2-3",
+  "version": "1.0.3",
   "description": "Request rules manager in order to block/allow request. Can be in use in interceptors/ middlewares",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
