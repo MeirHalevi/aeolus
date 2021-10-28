@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { AeolusCache } from '../../index';
+import { AeolusCache } from '../../src/cache';
 import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 
