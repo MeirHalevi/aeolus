@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Operation, RulesContainer, OperationResult } from '../../index';
+import { Operation, RulesContainer, OperationResult } from '../../src/index';
 import * as sinon from 'sinon';
 
 describe('Rules container tests', () => {

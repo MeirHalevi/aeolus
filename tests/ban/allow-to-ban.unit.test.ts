@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { AllowToBan } from '../../index';
+import { AllowToBan } from '../../src/index';
 import * as sinon from 'sinon';
 
 describe('AllowToBan tests', () => {

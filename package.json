@@ -28,7 +28,8 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register src/tests/**/**.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsc"
   },
   "author": "Fiverr dev team",
   "license": "MIT",
