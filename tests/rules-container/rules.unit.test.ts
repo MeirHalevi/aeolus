@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { Operation, RulesContainer, OperationResult } from '../../src/index';
 import * as sinon from 'sinon';
+import { Request } from 'express';
 
 describe('Rules container tests', () => {
     let mockRequest: Request;
