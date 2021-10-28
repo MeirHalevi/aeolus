@@ -3,7 +3,7 @@
   "version": "1.0.2-2",
   "description": "Request rules manager in order to block/allow request. Can be in use in interceptors/ middlewares",
   "main": "./dist/index.js",
-  "types": "./dist/pegasus.d.ts",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@types/express": "^4.17.11",
     "express": "^4.17.1"
